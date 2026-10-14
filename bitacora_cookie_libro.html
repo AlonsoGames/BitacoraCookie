@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bitácora de C. Cookie · Carta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#0b0c10;}
+*{box-sizing:border-box;}
+#libro{width:880px;max-width:100%;margin:0 auto;background:#0d0f12;padding:28px;font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;color:#3a2a2c;}
+.page{display:none;}
+.page.active{display:block;animation:fade .4s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.orn{text-align:center;color:#8c7e60;font:14px/1 Cinzel,Georgia,serif;letter-spacing:12px;padding-left:12px;}
+/* portada */
+.cover .frame{border:3px double #8c7e60;padding:6px;background:#4a1c25;background:radial-gradient(circle at 50% 30%,#5d2530,#3a1219 80%);}
+.cover .inner{border:1px solid #8c7e60;min-height:640px;padding:50px 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#e8dfcb;}
+.seal{width:84px;height:84px;border-radius:50%;border:2px solid #8c7e60;background-size:cover;background-position:center;margin:0 0 22px;}
+.kicker{font:600 12px/1 Cinzel,Georgia,serif;letter-spacing:7px;padding-left:7px;text-transform:uppercase;color:#c8b98f;margin:0 0 20px;}
+.cover .de{font:italic 20px/1 'Cormorant Garamond',Georgia,serif;color:#c8b98f;margin:26px 0 12px;}
+.cover h1{margin:0;font:600 58px/1.1 Cinzel,Georgia,serif;letter-spacing:6px;padding-left:6px;text-transform:uppercase;color:#e8dfcb;}
+.cover .sub{margin:18px 0 0;font:italic 19px/1.4 'Cormorant Garamond',Georgia,serif;color:#c8b98f;}
+.rule{width:140px;height:1px;background:#8c7e60;margin:28px auto;}
+.btn{cursor:pointer;font:600 13px/1 Cinzel,Georgia,serif;letter-spacing:4px;padding:15px 30px 15px 34px;text-transform:uppercase;border:1px solid #8c7e60;background:transparent;color:#e8dfcb;transition:.25s;}
+.btn:hover{background:#8c7e60;color:#2b1a1d;}
+.cover .foot{margin-top:34px;font:12px/1 Cinzel,Georgia,serif;letter-spacing:4px;padding-left:4px;text-transform:uppercase;color:#8c7e60;}
+/* hojas */
+.sheet .frame{border:3px double #8c7e60;padding:6px;background:#f4ecd8;}
+.sheet .inner{border:1px solid #8c7e60;padding:36px 52px 44px;min-height:560px;}
+.run{display:flex;justify-content:space-between;margin:0 0 30px;padding-bottom:10px;border-bottom:1px solid #d8cba8;font:italic 14px/1 'Cormorant Garamond',Georgia,serif;color:#8c7e60;letter-spacing:1px;}
+.dish{display:flex;align-items:baseline;gap:12px;margin:0 0 20px;}
+.dish h2{margin:0;font:400 24px/1.3 Cinzel,Georgia,serif;letter-spacing:2px;text-transform:uppercase;color:#3a2a2c;}
+.leader{flex:1;min-width:16px;border-bottom:2px dotted #8c7e60;transform:translateY(-4px);}
+.cap{font:italic 16px/1 'Cormorant Garamond',Georgia,serif;color:#8c7e60;white-space:nowrap;}
+.sheet p{margin:0 0 15px;font:18px/1.75 'Cormorant Garamond',Georgia,serif;text-align:justify;color:#3a2a2c;}
+/* indice */
+.idx-t{text-align:center;margin:6px 0 10px;font:600 38px/1.1 Cinzel,Georgia,serif;letter-spacing:6px;padding-left:6px;text-transform:uppercase;color:#3a2a2c;}
+.idx-s{text-align:center;margin:0 0 28px;font:italic 17px/1.4 'Cormorant Garamond',Georgia,serif;color:#8c7e60;}
+.idx{list-style:none;margin:0;padding:0;}
+.idx a{display:flex;align-items:baseline;gap:12px;text-decoration:none;color:#3a2a2c;padding:7px 8px;border-radius:2px;transition:.2s;}
+.idx a:hover{background:rgba(74,28,37,.08);color:#4a1c25;}
+.idx .main a{font:600 22px/1.3 Cinzel,Georgia,serif;letter-spacing:3px;text-transform:uppercase;padding-top:12px;}
+.idx .main .pg{font:italic 18px/1 'Cormorant Garamond',Georgia,serif;}
+.idx .sub{list-style:none;margin:4px 0 0;padding:0 0 0 28px;}
+.idx .sub li{margin:0 0 2px;}
+.idx .sub a{font:19px/1.3 'Cormorant Garamond',Georgia,serif;}
+.idx .sub .num{width:30px;color:#4a1c25;font-weight:600;}
+.idx .sub em{display:block;padding:0 8px 4px 50px;font:italic 14px/1.2 'Cormorant Garamond',Georgia,serif;color:#8c7e60;}
+.idx .soon{margin:22px 0 0;text-align:center;font:italic 16px/1.5 'Cormorant Garamond',Georgia,serif;color:#8c7e60;}
+.pg{white-space:nowrap;}
+/* fin */
+.fin{text-align:center;margin-top:34px;}
+.fin-t{margin-top:16px;color:#4a1c25;font:italic 18px/1.5 'Cormorant Garamond',Georgia,serif;}
+.fin-s{margin-top:6px;color:#8c7e60;font:italic 16px/1.5 'Cormorant Garamond',Georgia,serif;}
+.firma{margin-top:22px;font:600 13px/1 Cinzel,Georgia,serif;letter-spacing:5px;padding-left:5px;text-transform:uppercase;color:#3a2a2c;}
+.firma-s{margin-top:8px;font:12px/1 Cinzel,Georgia,serif;letter-spacing:4px;padding-left:4px;text-transform:uppercase;color:#8c7e60;}
+/* navegación */
+#nav{display:none;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;}
+#nav.on{display:flex;}
+#nav .btn{padding:12px 18px;font-size:11px;letter-spacing:3px;color:#e8dfcb;}
+#nav .btn[disabled]{opacity:.25;cursor:default;pointer-events:none;}
+#nav .btn.hide{visibility:hidden;}
+#count{font:italic 16px/1 'Cormorant Garamond',Georgia,serif;color:#8c7e60;text-align:center;flex:1;}
+@media (max-width:640px){
+ #libro{padding:12px;}
+ .sheet .inner{padding:26px 22px 32px;}
+ .cover .inner{padding:40px 20px;min-height:540px;}
+ .cover h1{font-size:38px;letter-spacing:3px;}
+ .dish h2{font-size:19px;}
+ .sheet p{font-size:17px;text-align:left;}
+ .idx .main a{font-size:18px;letter-spacing:2px;}
+ #nav .btn{padding:11px 10px;letter-spacing:1px;}
+}
+</style>
+<noscript><style>.page{display:block!important;margin-bottom:24px}#nav{display:none!important}</style></noscript>
+</head>
+<body>
+<div id="libro">
+
+<section class="page cover active" id="cover" aria-label="Portada">
+<div class="frame"><div class="inner">
+<div class="seal" style="background-image:url(https://i.imgur.com/3Udwzm9.jpeg)"></div>
+<div class="kicker">Jikogisei Kaizokudan</div>
+<div class="orn">✦ ✦ ✦</div>
+<div class="de">Carta de</div>
+<h1>C. Cookie</h1>
+<div class="sub">Bitácora de a bordo · Menú degustación</div>
+<div class="rule"></div>
+<button class="btn" id="open" type="button">Abrir la carta</button>
+<div class="foot">Cocinera</div>
+</div></div>
+</section>
+
+<section class="page sheet" id="indice" aria-label="Índice">
+<div class="frame"><div class="inner">
+<div class="run"><span>Bitácora de C. Cookie</span><span>Carta</span></div>
+<div class="orn">✦</div>
+<h2 class="idx-t">Índice</h2>
+<div class="idx-s">Elige un plato o pasa las páginas</div>
+<ul class="idx">
+<li class="main"><a href="#intro-1"><span class="t">Introducción</span><i class="leader"></i><span class="pg">2</span></a>
+<ul class="sub">
+<li><a href="#intro-1"><span class="num">I.</span><span class="t">La caja de galletas</span><i class="leader"></i><span class="pg">2</span></a><em>Aperitivo</em></li>
+<li><a href="#intro-2"><span class="num">II.</span><span class="t">Un plato al día</span><i class="leader"></i><span class="pg">3</span></a><em>Entrante</em></li>
+<li><a href="#intro-3"><span class="num">III.</span><span class="t">Las cocinas de la mansión</span><i class="leader"></i><span class="pg">4</span></a><em>Primer plato</em></li>
+<li><a href="#intro-4"><span class="num">IV.</span><span class="t">Lo que se oye desde la cocina</span><i class="leader"></i><span class="pg">5</span></a><em>Plato intermedio</em></li>
+<li><a href="#intro-5"><span class="num">V.</span><span class="t">El último banquete</span><i class="leader"></i><span class="pg">6</span></a><em>Plato principal</em></li>
+<li><a href="#intro-6"><span class="num">VI.</span><span class="t">Una isla que se queda atrás</span><i class="leader"></i><span class="pg">7</span></a><em>Digestivo</em></li>
+<li><a href="#intro-7"><span class="num">VII.</span><span class="t">Un propósito propio</span><i class="leader"></i><span class="pg">8</span></a><em>Postre</em></li>
+</ul></li>
+</ul>
+<div class="idx-soon soon">Próximamente, nuevos platos del día.</div>
+</div></div>
+</section>
+
+<section class="page sheet" id="intro-1" aria-label="Introducción, Capítulo I">
+<div class="frame"><div class="inner">
+<div class="run"><span>Introducción</span><span>Aperitivo</span></div>
+<div class="dish"><h2>La caja de galletas</h2><i class="leader"></i><span class="cap">Capítulo I</span></div>
+<p>Cookie llegó a la isla Tumi cuando apenas era un bebé, a bordo de un barco lleno de refugiados. Nadie sabía de dónde procedía ni quiénes eran sus padres. Lo único que encontraron junto a ella fue una pequeña caja llena de galletas, motivo por el que terminarían llamándola Cookie.</p>
+
+</div></div>
+</section>
+<section class="page sheet" id="intro-2" aria-label="Introducción, Capítulo II">
+<div class="frame"><div class="inner">
+<div class="run"><span>Introducción</span><span>Entrante</span></div>
+<div class="dish"><h2>Un plato al día</h2><i class="leader"></i><span class="cap">Capítulo II</span></div>
+<p>Una familia humilde de la isla decidió acogerla, aunque su nueva vida estuvo lejos de ser feliz. La familia apenas tenía recursos y, desde muy pequeña, Cookie tuvo que encargarse de todo tipo de tareas domésticas a cambio de un único plato de comida al día. Aprendió a cocinar, limpiar y cuidar de la casa antes incluso de tener la oportunidad de disfrutar de una infancia normal.</p>
+
+</div></div>
+</section>
+<section class="page sheet" id="intro-3" aria-label="Introducción, Capítulo III">
+<div class="frame"><div class="inner">
+<div class="run"><span>Introducción</span><span>Primer plato</span></div>
+<div class="dish"><h2>Las cocinas de la mansión</h2><i class="leader"></i><span class="cap">Capítulo III</span></div>
+<p>Cuando cumplió diez años, la familia decidió venderla a una familia noble del reino. Cookie pasó entonces a trabajar como moza en su mansión, realizando las tareas más básicas. Sin embargo, su talento para la cocina no tardó en llamar la atención. Poco a poco fue ganándose la confianza de los demás sirvientes y aprendiendo de los cocineros de la casa, hasta que sus habilidades la llevaron a trabajar en las cocinas de la mansión. A los dieciséis años, gracias a su experiencia y talento, terminó convirtiéndose en la jefa de cocina.</p>
+
+</div></div>
+</section>
+<section class="page sheet" id="intro-4" aria-label="Introducción, Capítulo IV">
+<div class="frame"><div class="inner">
+<div class="run"><span>Introducción</span><span>Plato intermedio</span></div>
+<div class="dish"><h2>Lo que se oye desde la cocina</h2><i class="leader"></i><span class="cap">Capítulo IV</span></div>
+<p>Para Cookie, aquello parecía haber sido un ascenso. Sin embargo, pronto descubrió que estar al frente de las cocinas significaba tener acceso a información que habría preferido no conocer. Por la mansión pasaban algunos de los hombres más poderosos del reino y, con ellos, secretos que debían permanecer ocultos. Venta de esclavos, abusos de poder, asesinatos y envenenamientos eran asuntos habituales entre los nobles. Cookie, desde la cocina, escuchaba conversaciones, preparaba banquetes y veía cómo las decisiones tomadas en aquellas habitaciones afectaban a personas que jamás tendrían la oportunidad de defenderse. Ella seguía siendo una sirvienta, pero se había convertido accidentalmente en una de las pocas personas que conocían lo que realmente ocurría entre aquellas paredes.</p><p>Mientras tanto, el descontento comenzaba a crecer fuera de la mansión. Los ciudadanos del reino, cansados de los abusos de la nobleza, empezaron a organizar protestas y a reclamar un cambio. Las noticias de las revueltas llegaban hasta la cocina y Cookie comenzó a comprender que algo estaba a punto de ocurrir.</p><p>Los nobles, lejos de intentar escuchar a su pueblo, decidieron responder a las protestas con violencia. Su intención era acabar con cualquiera que se atreviera a rebelarse contra ellos. Cookie sabía que, si la revolución fracasaba, muchas de las personas que protestaban morirían. También sabía que, tarde o temprano, los nobles terminarían descubriendo que ella conocía demasiados de sus secretos.</p>
+
+</div></div>
+</section>
+<section class="page sheet" id="intro-5" aria-label="Introducción, Capítulo V">
+<div class="frame"><div class="inner">
+<div class="run"><span>Introducción</span><span>Plato principal</span></div>
+<div class="dish"><h2>El último banquete</h2><i class="leader"></i><span class="cap">Capítulo V</span></div>
+<p>Durante años había obedecido. Había cocinado para ellos, había limpiado sus habitaciones y había permanecido en silencio. Pero aquella noche decidió dejar de hacerlo.</p><p>La noche anterior al comienzo de la revolución, Cookie preparó el último banquete de la familia noble. Aprovechando la confianza que había conseguido ganarse durante todos aquellos años, envenenó la comida destinada a los miembros de la familia. No hizo distinciones entre adultos, mujeres o niños. Para Cookie, todos formaban parte del mismo sistema que había condenado a innumerables personas a sufrir y que ahora pretendía aplastar la revolución antes de que comenzara.</p><p>Después de asegurarse de que no quedaba nada que pudiera vincularla con la mansión, tomó todo lo que necesitaba para sobrevivir: armas, dinero y provisiones. Entre las armas encontró uno de los estoques pertenecientes a la familia noble. Hasta aquel momento nunca había empuñado uno, pero decidió llevárselo consigo.</p><p>Cuando la revolución comenzó, Cookie abandonó definitivamente su posición como sirvienta y se unió a quienes luchaban por liberar el reino. Aquella fue la primera vez que desenvainó el estoque y también la primera vez que luchó por algo que consideraba suyo. Sin embargo, cuando finalmente salió el sol, Cookie ya había desaparecido.</p>
+
+</div></div>
+</section>
+<section class="page sheet" id="intro-6" aria-label="Introducción, Capítulo VI">
+<div class="frame"><div class="inner">
+<div class="run"><span>Introducción</span><span>Digestivo</span></div>
+<div class="dish"><h2>Una isla que se queda atrás</h2><i class="leader"></i><span class="cap">Capítulo VI</span></div>
+<p>No volvió a la mansión ni permaneció en la isla para contemplar las consecuencias de sus actos. Simplemente se marchó de Tumi, dejando atrás su nombre, su pasado y la vida que había llevado durante tantos años.</p><p>Pero su desaparición no pasó desapercibida.</p>
+
+</div></div>
+</section>
+<section class="page sheet" id="intro-7" aria-label="Introducción, Capítulo VII">
+<div class="frame"><div class="inner">
+<div class="run"><span>Introducción</span><span>Postre</span></div>
+<div class="dish"><h2>Un propósito propio</h2><i class="leader"></i><span class="cap">Capítulo VII</span></div>
+<p>Poco después de abandonar la isla, el líder de Jikogisei consiguió ponerse en contacto con ella. Había oído hablar de lo ocurrido en la mansión y de la misteriosa cocinera que había desaparecido durante la revolución. En lugar de verla únicamente como una asesina o una antigua sirvienta, le ofreció algo que Cookie nunca había tenido: un propósito propio.</p><p>Jikogisei le ofreció la oportunidad de empezar de nuevo, perseguir sus propios objetivos y formar parte de algo mucho más grande que ella misma. Por primera vez, Cookie tendría la posibilidad de decidir qué hacer con su vida.</p>
+<div class="fin"><div class="orn">✦</div><div class="fin-t">Fin del menú degustación</div><div class="fin-s">Próximamente, nuevos platos del día en esta bitácora.</div><div class="firma">C. Cookie</div><div class="firma-s">Cocinera · Jikogisei Kaizokudan</div></div>
+</div></div>
+</section>
+
+<nav id="nav" aria-label="Navegación">
+<button class="btn" id="prev" type="button">‹ Anterior</button>
+<button class="btn" id="toidx" type="button">Índice</button>
+<span id="count"></span>
+<button class="btn" id="next" type="button">Siguiente ›</button>
+</nav>
+</div>
+<script>
+(function(){
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var ids=pages.map(function(p){return p.id;});
+  var nav=document.getElementById('nav');
+  var prev=document.getElementById('prev'), idx=document.getElementById('toidx'), next=document.getElementById('next'), count=document.getElementById('count');
+  var cur=-1;
+  function go(i){ if(i<0||i>=ids.length) return; location.hash=ids[i]; }
+  function render(first){
+    var h=location.hash.replace('#',''); var i=ids.indexOf(h); if(i<0) i=0;
+    var changed=(i!==cur); cur=i;
+    pages.forEach(function(p,k){ p.classList.toggle('active',k===i); });
+    nav.classList.toggle('on',i>0);
+    prev.textContent = i===1 ? '\u2039 Portada' : '\u2039 Anterior';
+    next.textContent = i===1 ? 'Empezar \u203A' : 'Siguiente \u203A';
+    next.classList.toggle('hide', i===ids.length-1);
+    idx.classList.toggle('hide', i===1);
+    count.textContent = i>0 ? (i+' / '+(ids.length-1)) : '';
+    if(changed && !first){ var l=document.getElementById('libro'); window.scrollTo({top:Math.max(l.offsetTop-10,0),behavior:'smooth'}); }
+  }
+  document.getElementById('open').addEventListener('click',function(){ go(1); });
+  prev.addEventListener('click',function(){ go(cur-1); });
+  next.addEventListener('click',function(){ go(cur+1); });
+  idx.addEventListener('click',function(){ go(1); });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'&&cur>0) go(cur+1);
+    else if(e.key==='ArrowLeft'&&cur>0) go(cur-1);
+  });
+  window.addEventListener('hashchange',function(){ render(false); });
+  render(true);
+})();
+</script>
+</body>
+</html>
